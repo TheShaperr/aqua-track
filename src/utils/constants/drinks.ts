@@ -8,7 +8,7 @@ const inputDrinkConfig = [
   {
     drinkType: "caffeine",
     size: 500,
-    increment: 25,
+    increment: 50,
     hydroFactor: 0.75,
     abv: 0,
   },
