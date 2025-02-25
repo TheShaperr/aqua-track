@@ -16,7 +16,9 @@ import {
   MIN_PER_HOUR,
   MS_PER_HOUR,
   ONE_THOUSAND,
+  inputDrinkConfig,
 } from "@/utils/constants";
+import { drinkTypeList } from "@/utils/maps";
 
 /**
  * @param {*} timeMs - time in milliseconds to wait
@@ -132,11 +134,25 @@ const totalDrinkQuantity = (drinkHistory: DrinkHistoryItem[]) => {
  * Drinking 500ml of beer returns -80ml
  * Drinking 250ml of tea returns 225ml, etc.
  */
+
 const totalHydratingDrinkQuantity = (drinkHistory: DrinkHistoryItem[]) => {
+  const hydroFactorMap = Object.fromEntries(
+    drinkTypeList.map(item => [item.typeID, item.drinkType])
+  );
+
   return (
-    drinkHistory.reduce((acc, val) => acc + val?.hydrationQuantity, 0) ?? 0
+    drinkHistory.reduce((acc, item) => {
+      const drinkType = hydroFactorMap[item.typeID];
+      const drinkConfig = inputDrinkConfig.find(config => config.drinkType === drinkType);
+
+      if (!drinkConfig) return acc; // Skip if no match is found
+
+      const hydrationQuantity = item.quantity * drinkConfig.hydroFactor;
+      return acc + hydrationQuantity;
+    }, 0) ?? 0
   );
 };
+
 
 /**
  *
@@ -208,15 +224,21 @@ const calculateCurrentBAC = (
   weight: number | null,
   decimals: number = 3
 ) => {
+  const abvMap = Object.fromEntries(drinkTypeList.map(item => [item.typeID, item.drinkType]));
+  const abvConfigMap = Object.fromEntries(inputDrinkConfig.map(item => [item.drinkType, item.abv]));
+
   const currentDate = new Date();
   let currentBAC = 0;
   let previousDrinkTimestamp: UnixDate | null = null;
 
   drinkHistory.forEach((historyItem) => {
+    const drinkType = abvMap[historyItem.typeID];
+    const abv = drinkType ? abvConfigMap[drinkType] ?? 0 : 0;
+
     const drinkDate = historyItem.date;
     const initialBAC = calculateBacAfterDrink(
       historyItem.quantity,
-      historyItem.abv,
+      abv,
       gender,
       weight
     );
@@ -238,9 +260,10 @@ const calculateCurrentBAC = (
     (currentDate.getTime() - (previousDrinkTimestamp ?? 0)) / MS_PER_HOUR;
   currentBAC = Math.max(
     currentBAC -
-      elapsedTimeSinceLastDrinkHours * ALCOHOL_ELIMINATION_RATE_PER_HOUR,
+    elapsedTimeSinceLastDrinkHours * ALCOHOL_ELIMINATION_RATE_PER_HOUR,
     0
   );
+
   return formatDecimals(currentBAC, decimals);
 };
 
@@ -324,7 +347,7 @@ const calculateDailyHydrationGoalInMl = (
 };
 
 /* Empty function that does nothing */
-const emptyFunc = () => {};
+const emptyFunc = () => { };
 
 export {
   sleep,

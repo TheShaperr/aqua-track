@@ -192,6 +192,7 @@ const syncSavedChangesToDatabase = async (userId: string) => {
     const updates = {
       userDrinkHistory: arrayUnion(...drinksToAdd),
     };
+
     await updateDoc(userDocRef, updates);
     await AsyncStorage.removeItem(LOCAL_DRINKS_TO_ADD_KEY);
   }

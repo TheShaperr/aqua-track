@@ -14,7 +14,7 @@ import {
   useTodaysDrinks,
 } from "@/hooks";
 
-import { drinkImageMap } from "@/utils/maps";
+import { drinkImageMap, drinkTypeList } from "@/utils/maps";
 import { color, cardBorderWidth, fontFamily } from "@/utils/constants";
 import {
   infoCardCurrentAmountHeight,
@@ -35,7 +35,9 @@ import {
 } from "@/utils/constants/components/typography";
 
 function HistoryItem({ item }: { item: DrinkHistoryItem }) {
-  const { imageSrc, label: title, date, quantity, typeID } = item;
+  const { date, quantity, typeID } = item;
+  const { label: title = "", imageSrc = "" } = drinkTypeList.find((item) => item.typeID === typeID) ?? {};
+
   const todaysDrinks = useTodaysDrinks();
   const { displayVolumeWithUnit, displayVolumeUnit } = useDisplayUnits();
   const { t } = useTranslation();

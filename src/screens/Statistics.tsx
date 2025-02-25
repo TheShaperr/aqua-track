@@ -14,6 +14,7 @@ import {
   pieInnerRadius,
   pieLabelRadius,
 } from "@/utils/constants/components/pieChart";
+import { drinkTypeList } from "@/utils/maps";
 
 import { DrinkHistoryItem } from "@/models/DrinkHistoryItem";
 import { useTodaysDrinks } from "@/hooks";
@@ -34,17 +35,19 @@ function Statistics() {
     }, {})
   );
 
-  const sliceColor = reducedDrinkHistory.map((item) => item.color);
+  // Map color and label properties via drinkTypeList
+  const drinkTypeMap = Object.fromEntries(drinkTypeList.map(item => [item.typeID, item]));
+
+  // Map slice color via drinkTypeList
+  const sliceColor = reducedDrinkHistory.map(item => drinkTypeMap[item.typeID]?.color ?? color.BLACK);
 
   /**
    * Prepare the data for the pie chart, including labels.
    */
-  const graphicsData = reducedDrinkHistory.map((item) => {
-    return {
-      x: t(item.label), // Use the translated label
-      y: (item.quantity / totalDrinkQuantity(drinkHistory)) * 100,
-    };
-  });
+  const graphicsData = reducedDrinkHistory.map(item => ({
+    x: t(drinkTypeMap[item.typeID]?.label ?? ""), 
+    y: (item.quantity / totalDrinkQuantity(drinkHistory)) * 100,
+  }));
 
   // Update state when screen is focused
   useFocusEffect(

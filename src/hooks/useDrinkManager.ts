@@ -14,7 +14,6 @@ import {
   addDrinkToUserHistory,
   removeDrinkFromUserHistory,
 } from "@/utils/database";
-import { inputDrinkConfig } from "@/utils/constants";
 import {
   addWaterToHealthKit,
   deleteWaterFromHealthKit,
@@ -57,22 +56,13 @@ function useDrinkManager(): UseDrinkManagerReturn {
    * @param quantityValue - quantity of drink to be added to the history in milliliters (ml)
    */
   const addDrink = async (drinkType: DrinkItem, quantityValue: number) => {
-    const inputBottleObject = inputDrinkConfig.filter(
-      (item) => item.drinkType === drinkType.drinkType
-    )[0];
-
-    const hydroFactor = inputBottleObject?.hydroFactor ?? 0;
-    const abv = inputBottleObject?.abv ?? 0;
-
     const date = Date.now();
     const id: UID = uid(8);
 
     const drinkItem: DrinkHistoryItem = {
-      ...drinkType,
       quantity: quantityValue,
       date,
-      hydrationQuantity: quantityValue * hydroFactor,
-      abv,
+      typeID: drinkType.typeID,
       id,
     };
 
