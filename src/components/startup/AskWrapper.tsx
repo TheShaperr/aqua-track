@@ -158,12 +158,13 @@ function AskWrapper({
         value={String(
           formState[inputType as keyof typeof formState] || input || ""
         )}
+        inputType={CustomTextFieldInputType.Default}
         handleOnChangeText={(text) => {
           setInput(text);
           handleInputChange(inputType, text);
         }}
         handleOnFocus={() => resetInputValidation(inputType)}
-        customStyles={{ height: "50%" }}
+        customStyles={{ height: "100%" }}
         fullWidth
       />
     );
@@ -258,16 +259,16 @@ export { AskWrapper };
 
 const styles = StyleSheet.create({
   questionWrapper: {
-    height: "20%",
+    height: "30%",
     justifyContent: "center",
   },
   inputFieldWrapper: {
     height: "40%",
     width: "100%",
-    justifyContent: "space-between",
+    justifyContent: "center",
   },
   continueButtonWrapper: {
-    height: "40%",
+    height: "30%",
     justifyContent: "center",
   },
 });

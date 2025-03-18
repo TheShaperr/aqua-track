@@ -4,13 +4,13 @@ import { useState, useCallback, useRef } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 import { View } from "react-native";
 import { CountUp, ReturnValue } from "use-count-up";
-import { ms, ScaledSheet } from "react-native-size-matters";
+import { ScaledSheet } from "react-native-size-matters";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 
 import { PrimaryText } from "@/components/texts";
 import { TimeUntilSober } from "@/components/intakeCard/TimeUntilSober";
 
-import { color, FONT_SIZE_34, shadow } from "@/utils/constants";
+import { color, FONT_SIZE_28, shadow } from "@/utils/constants";
 
 import {
   // totalDrinkQuantity,
@@ -103,11 +103,7 @@ function IntakeInfoCard() {
         },
       ]}
     >
-      <PrimaryText
-        numberOfLines={1}
-        fontSize={ms(FONT_SIZE_34)}
-        color={color.BLUE}
-      >
+      <PrimaryText numberOfLines={1} fontSize={FONT_SIZE_28} color={color.BLUE}>
         {/* {metricUnitConversion(totalDrinkQuantityToday)} */}
         <CountUp
           key={currentHydrationLevel}
@@ -129,7 +125,7 @@ function IntakeInfoCard() {
             {" "}
             <Ionicons
               color={color.BLUE}
-              size={ms(25)}
+              size={20}
               name="checkmark-circle-outline"
             />
           </>
@@ -160,9 +156,9 @@ const styles = ScaledSheet.create({
   wrapper: {
     alignItems: "center",
     flexDirection: "row",
-    paddingHorizontal: "27@ms",
-    paddingVertical: "12.5@ms",
-    borderRadius: "36@ms",
+    paddingHorizontal: "20@ms",
+    paddingVertical: "8@ms",
+    borderRadius: "25@ms",
     color: color.BLUE,
     ...shadow,
   },

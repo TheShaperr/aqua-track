@@ -13,8 +13,19 @@ const springAnimation = (
 
   const finalConfig = { ...defaultConfig, ...confObj };
 
-  Animated.spring(scaleValue, finalConfig).start(() => {
-    if (callback) callback();
+  // If a callback is provided, use it
+  if (callback) {
+    Animated.spring(scaleValue, finalConfig).start(() => {
+      callback();
+    });
+    return;
+  }
+
+  // Otherwise, resolve the promise
+  return new Promise((resolve) => {
+    Animated.spring(scaleValue, finalConfig).start(() => {
+      resolve(true);
+    });
   });
 };
 

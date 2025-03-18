@@ -94,7 +94,11 @@ function AccountSettings() {
 
     // In case user is logged in with Apple
     else if (providerId === "apple.com") {
-      firebaseRemoveAccount("");
+      openModal({
+        modalText: t("settings.account.removeAccountPrompt"),
+        onConfirm: () => firebaseRemoveAccount(""),
+        hasDecision: true,
+      });
     }
 
     // Fallback
@@ -126,11 +130,30 @@ function AccountSettings() {
   };
 
   const handleRemoveAccount = () => {
-    openModal({
-      modalText: t("settings.account.removeAccountPrompt"),
-      onConfirm: handleConfirmRemoveAccount,
-      hasDecision: true,
-    });
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const providerId = user?.providerData[0]?.providerId;
+
+    if (!providerId) {
+      openModal({
+        modalText: t("error.removeAccountErr"),
+      });
+      return;
+    }
+
+    if (providerId === "password") {
+      navigation.navigate(MainRouteName.DeleteAccount);
+      return;
+    }
+
+    if (providerId === "apple.com") {
+      openModal({
+        modalText: t("settings.account.removeAccountPrompt"),
+        onConfirm: handleConfirmRemoveAccount,
+        hasDecision: true,
+      });
+      return;
+    }
   };
 
   const renderAccountSettings = () => {

@@ -4,6 +4,6 @@ import { ScreenSize } from "@/enums/maps/ScreenSize";
 
 import { SCREEN_SIZE } from "@/utils/constants";
 
-const cardBorderRadius = SCREEN_SIZE === ScreenSize.LARGE ? ms(15) : ms(20);
+const customTextFieldPadding = SCREEN_SIZE === ScreenSize.LARGE ? 0 : ms(2.5);
 
-export { cardBorderRadius };
+export { customTextFieldPadding };

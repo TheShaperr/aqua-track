@@ -49,6 +49,7 @@ function ForgotPassword({ setAccountSettingsState }: ForgotPasswordProps) {
           setAccountSettingsState(AccountSettingsState.ShowLogin),
       });
     } catch (error) {
+      console.error(error);
       setIsLoading(false);
       openModal({
         modalText: t("settings.account.forgotPw.confEmailSentFail"),
@@ -69,7 +70,6 @@ function ForgotPassword({ setAccountSettingsState }: ForgotPasswordProps) {
         }
         handleOnFocus={() => resetInputValidation(FormInputType.Email)}
         inputType={CustomTextFieldInputType.Email}
-        placeholder={t("settings.account.email")}
         fullWidth
       ></CustomTextField>
       <View style={styles.errorWrapper}>
@@ -89,7 +89,7 @@ export { ForgotPassword };
 
 const scaledStyles = ScaledSheet.create({
   textField: {
-    marginBottom: "10@ms",
+    marginVertical: "10@ms",
   },
 });
 

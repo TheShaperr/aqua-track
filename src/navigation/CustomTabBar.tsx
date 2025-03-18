@@ -1,4 +1,4 @@
-import { View, Pressable, Text, StyleSheet } from "react-native";
+import { View, Pressable, Text, StyleSheet, ViewStyle } from "react-native";
 import { TabNavigationState, ParamListBase } from "@react-navigation/native";
 import { BottomTabNavigationEventMap } from "@react-navigation/bottom-tabs";
 import { NavigationHelpers } from "@react-navigation/native";
@@ -8,7 +8,10 @@ import { ScaledSheet } from "react-native-size-matters";
 import { WaterDropButton } from "@/components/navigation";
 
 import { color, shadow, fontFamily } from "@/utils/constants";
-import { customTabBarRadius } from "@/utils/constants/components";
+import {
+  customTabBarFontSize,
+  customTabBarRadius,
+} from "@/utils/constants/components";
 
 import { DrinkRouteName } from "@/enums/routes/DrinkRouteName";
 import { MainRouteName } from "@/enums/routes/MainRouteName";
@@ -59,7 +62,7 @@ function CustomTabBar({ state, navigation }: CustomTabBarProps) {
         if (route.name === DrinkRouteName.DrinkInput) {
           return (
             <WaterDropButton
-              style={scaledStyles.waterDropButton as any}
+              style={scaledStyles.waterDropButton as ViewStyle}
               key={label}
               onPress={onPress}
             />
@@ -73,7 +76,13 @@ function CustomTabBar({ state, navigation }: CustomTabBarProps) {
               style={scaledStyles.wrapper}
             >
               <View style={[styles.container, dynamicBgStyle]}>
-                <Text style={[scaledStyles.text, dynamicTextStyle]}>
+                <Text
+                  style={[
+                    scaledStyles.text,
+                    dynamicTextStyle,
+                    { fontSize: customTabBarFontSize },
+                  ]}
+                >
                   {label}
                 </Text>
               </View>
@@ -104,7 +113,6 @@ const scaledStyles = ScaledSheet.create({
   },
   text: {
     fontFamily: fontFamily.DEFAULT,
-    fontSize: "20@ms",
     textTransform: "uppercase",
   },
   waterDropButton: {

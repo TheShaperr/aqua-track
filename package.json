@@ -1,6 +1,6 @@
 {
   "name": "Drinky",
-  "version": "1.6.5",
+  "version": "1.6.8",
   "scripts": {
     "start": "npx expo start",
     "build-test-flight": "eas build -p ios --auto-submit",
@@ -42,6 +42,7 @@
     "react-dom": "18.2.0",
     "react-i18next": "^15.0.1",
     "react-native": "0.74.5",
+    "react-native-animated-spinkit": "^1.5.2",
     "react-native-haptic-feedback": "^2.3.3",
     "react-native-health": "^1.19.0",
     "react-native-localize": "^3.2.1",

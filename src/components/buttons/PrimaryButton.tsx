@@ -4,12 +4,13 @@ import {
   Animated,
   StyleSheet,
   View,
-  ActivityIndicator,
   ColorValue,
   TextStyle,
 } from "react-native";
 // import * as Haptics from "expo-haptics";
 import { useRef } from "react";
+import { ms } from "react-native-size-matters";
+import { Circle } from "react-native-animated-spinkit";
 
 import { color, fontFamily, shadow } from "@/utils/constants";
 import {
@@ -18,7 +19,6 @@ import {
   primaryButtonWrapperHeight,
 } from "@/utils/constants/components/typography/button";
 import { animateButtonPress, animatedScaleValue } from "@/utils/animations";
-import { ms } from "react-native-size-matters";
 
 const getTextStyle = (
   flat = false,
@@ -132,7 +132,8 @@ function PrimaryButton({
 
   const loadingContent = (
     <View style={styles.textWrapper}>
-      <ActivityIndicator size="large" color={color.WHITE} />
+      {/* <ActivityIndicator size="medium" color={color.WHITE} /> */}
+      <Circle size={ms(25)} color={color.WHITE}></Circle>
     </View>
   );
 

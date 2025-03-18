@@ -1,5 +1,5 @@
 export enum ScreenSize {
-  Small = "SMALL",
-  Medium = "MEDIUM",
-  Large = "LARGE",
+  SMALL = "SMALL",
+  MEDIUM = "MEDIUM",
+  LARGE = "LARGE",
 }

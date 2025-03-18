@@ -8,6 +8,7 @@ import { useDisplayUnits } from "@/hooks/useDisplayUnits";
  * @param {*} drinkList - the list of drink history items to calculate from
  * @returns the total quantity of the specified drink type
  */
+
 function useGroupedDrinkHistoryQuantity(
   typeID: number,
   drinkList: DrinkHistoryItem[]

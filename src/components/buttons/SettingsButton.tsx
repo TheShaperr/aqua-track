@@ -1,11 +1,11 @@
 import { Pressable, Animated, View, StyleSheet } from "react-native";
 import { useRef } from "react";
-// import * as Haptics from "expo-haptics";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { ms, ScaledSheet } from "react-native-size-matters";
+import { ms } from "react-native-size-matters";
 
 import { animateButtonPress, animatedScaleValue } from "@/utils/animations";
 import { color, shadow } from "@/utils/constants";
+import { settingsButtonIconSize } from "@/utils/constants/components/settings";
 
 interface SettingsButtonProps {
   onPress: () => void;
@@ -13,11 +13,6 @@ interface SettingsButtonProps {
 
 function SettingsButton({ onPress }: SettingsButtonProps) {
   const scaleValue = useRef(animatedScaleValue(1)).current;
-
-  const handlePress = () => {
-    // Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    onPress();
-  };
 
   const handleOnPressIn = () => {
     animateButtonPress(scaleValue, animatedScaleValue(0.8));
@@ -32,15 +27,20 @@ function SettingsButton({ onPress }: SettingsButtonProps) {
       <Animated.View
         style={[
           { transform: [{ scale: scaleValue }] },
-          scaledStyles.baseButton,
+          styles.baseButton,
+          { width: ms(48), height: ms(48), borderRadius: ms(24) },
         ]}
       >
         <Pressable
-          onPress={handlePress}
+          onPress={onPress}
           onPressIn={handleOnPressIn}
           onPressOut={handleOnPressOut}
         >
-          <Ionicons color={color.BLUE} size={ms(35)} name="menu" />
+          <Ionicons
+            color={color.BLUE}
+            size={settingsButtonIconSize}
+            name="menu"
+          />
         </Pressable>
       </Animated.View>
     </View>
@@ -49,20 +49,14 @@ function SettingsButton({ onPress }: SettingsButtonProps) {
 
 export { SettingsButton };
 
-const scaledStyles = ScaledSheet.create({
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "flex-end",
+  },
   baseButton: {
     alignItems: "center",
     justifyContent: "center",
     ...shadow,
     backgroundColor: color.WHITE,
-    width: "64@ms",
-    height: "64@ms",
-    borderRadius: "32@ms",
-  },
-});
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "flex-end",
   },
 });

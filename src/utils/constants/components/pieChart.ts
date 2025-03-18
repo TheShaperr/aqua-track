@@ -1,27 +1,27 @@
 import { SCREEN_SIZE } from "@/utils/constants";
 
 const pieDimensionsObj = {
-  SMALL: 350,
-  MEDIUM: 400,
-  LARGE: 550,
+  SMALL: 300,
+  MEDIUM: 350,
+  LARGE: 500,
 };
 
 const pieInnerRadiusObj = {
-  SMALL: 65,
-  MEDIUM: 80,
-  LARGE: 120,
+  SMALL: 60,
+  MEDIUM: 70,
+  LARGE: 110,
 };
 
 const pieLabelRadiusObj = {
-  SMALL: 85,
-  MEDIUM: 105,
-  LARGE: 160,
+  SMALL: 80,
+  MEDIUM: 90,
+  LARGE: 150,
 };
 
 const pieCornerRadiusObj = {
-  SMALL: 15,
-  MEDIUM: 15,
-  LARGE: 35,
+  SMALL: 10,
+  MEDIUM: 12.5,
+  LARGE: 30,
 };
 
 const pieDimensions = pieDimensionsObj[SCREEN_SIZE];

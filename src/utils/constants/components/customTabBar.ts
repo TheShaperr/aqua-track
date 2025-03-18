@@ -1,4 +1,5 @@
-import { SCREEN_SIZE } from "@/utils/constants";
+import { ScreenSize } from "@/enums/maps/ScreenSize";
+import { FONT_SIZE_18, FONT_SIZE_24, SCREEN_SIZE } from "@/utils/constants";
 
 const customTabBarRadiusObj = {
   SMALL: 26,
@@ -6,6 +7,9 @@ const customTabBarRadiusObj = {
   LARGE: 72,
 };
 
+const customTabBarFontSize =
+  SCREEN_SIZE === ScreenSize.LARGE ? FONT_SIZE_24 : FONT_SIZE_18;
+
 const customTabBarRadius = customTabBarRadiusObj[SCREEN_SIZE];
 
-export { customTabBarRadius };
+export { customTabBarRadius, customTabBarFontSize };

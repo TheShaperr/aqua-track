@@ -2,7 +2,7 @@ import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { SCREEN_SIZE } from "@/utils/constants";
 
 const waterDropButtonSizeObj = {
-  SMALL: hp("17%"),
+  SMALL: hp("16%"),
   MEDIUM: hp("13%"),
   LARGE: hp("15%"),
 };

@@ -15,6 +15,7 @@ import { SecondaryText } from "@/components/texts";
 
 import { color, fontFamily, inputFieldHeight } from "@/utils/constants";
 import { paragraphMediumFontSize } from "@/utils/constants/components/typography";
+import { customTextFieldPadding } from "@/utils/constants/components/input";
 
 interface CustomTextFieldProps {
   value: string;
@@ -97,6 +98,9 @@ function CustomTextField({
     case undefined:
     case null:
       break;
+    case CustomTextFieldInputType.Default:
+      textAlign = "center";
+      break;
     case CustomTextFieldInputType.Number:
       textAlign = "center";
       keyboardType = inputType;
@@ -119,30 +123,34 @@ function CustomTextField({
     <View
       style={[
         {
+          flex: 1,
           width: textFieldWidth,
+          justifyContent: "center",
         } as StyleProp<ViewStyle>,
         customStyles,
       ]}
       {...props}
     >
       <View
-        style={[
-          scaledStyles.labelWrapper,
-          { width: fullWidth ? "100%" : "50%" },
-        ]}
+        style={{
+          marginBottom: label ? ms(10) : 0,
+          width: fullWidth ? "100%" : "50%",
+        }}
       >
-        <SecondaryText
-          fontSize={paragraphMediumFontSize}
-          color={labelColor ?? color.DARK_BLUE}
-        >
-          {label}
-        </SecondaryText>
+        {label && (
+          <SecondaryText
+            fontSize={paragraphMediumFontSize}
+            color={labelColor ?? color.DARK_BLUE}
+          >
+            {label}
+          </SecondaryText>
+        )}
       </View>
       <View
         style={[
           scaledStyles.textInputWrapper,
           {
-            paddingLeft: readOnly ? "0%" : ms(10),
+            paddingLeft: readOnly ? "0%" : customTextFieldPadding,
             backgroundColor: readOnly ? "" : color.WHITE,
             width: textFieldWidth,
           } as StyleProp<ViewStyle>,
@@ -185,9 +193,6 @@ function CustomTextField({
 export { CustomTextField };
 
 const scaledStyles = ScaledSheet.create({
-  labelWrapper: {
-    marginBottom: "10@ms",
-  },
   textInputWrapper: {
     paddingRight: "10@ms",
     height: inputFieldHeight,

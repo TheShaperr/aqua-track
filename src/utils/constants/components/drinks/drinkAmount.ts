@@ -1,8 +1,8 @@
 import { SCREEN_SIZE } from "@/utils/constants";
 
 const drinkAmountSensitivityObj = {
-  SMALL: 0.75,
-  MEDIUM: 0.3,
+  SMALL: 0.35,
+  MEDIUM: 0.325,
   LARGE: 0.25,
 };
 

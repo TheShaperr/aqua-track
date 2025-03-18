@@ -54,6 +54,9 @@ const middleware = (store) => (next) => async (action) => {
       case "removeFromHistory":
         removeDrink(actionPayload);
         break;
+      case "setHistory":
+        await writeAsyncStorage("drinkHistory", actionPayload);
+        break;
     }
   }
 

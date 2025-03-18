@@ -1,10 +1,5 @@
 import { ms } from "react-native-size-matters";
 
-import { ScreenSize } from "@/enums/maps/ScreenSize";
-
-import { FontSizeConfig } from "@/models/FontSizeConfig";
-import { ResponsiveSize } from "@/models/ResponsiveSize";
-
 const color = {
   TRANSPARENT: "transparent",
   WHITE: "#FFFFFF",
@@ -37,52 +32,7 @@ const shadow = {
   shadowRadius: ms(5),
 };
 
-const dimensions = {
-  CARD_BUTTON_HEIGHT_PHONE: 120,
-  CARD_BUTTON_HEIGHT_TABLET: 240,
-  LIST_ITEM_HEIGHT_SMALL: 80,
-  LIST_ITEM_HEIGHT_MEDIUM: 100,
-  LIST_ITEM_HEIGHT_LARGE: 150,
-};
-
-const inputFontSizeValues = {
-  1: { fontSize: 12 },
-  2: { fontSize: 14 },
-  3: { fontSize: 16 },
-  4: { fontSize: 18 },
-  5: { fontSize: 20 },
-  6: { fontSize: 24 },
-  7: { fontSize: 36 },
-  8: { fontSize: 48 },
-};
-
-const getFontSizeForScreen = (
-  fontSizeConfig: FontSizeConfig,
-  screenSize: ScreenSize,
-  sizes: ResponsiveSize
-): number => {
-  const sizeKey = sizes[screenSize];
-  const fontSize = fontSizeConfig[sizeKey]?.fontSize;
-
-  if (fontSize === undefined) {
-    throw new Error(
-      `Font size for key ${sizeKey} is not defined in fontSizeConfig`
-    );
-  }
-
-  return fontSize;
-};
-
-const inputFieldHeight = ms(50);
+const inputFieldHeight = ms(40);
 const cardBorderWidth = ms(1.5);
 
-export {
-  color,
-  shadow,
-  dimensions,
-  inputFieldHeight,
-  cardBorderWidth,
-  fontFamily,
-  inputFontSizeValues,
-  getFontSizeForScreen,
-};
+export { color, shadow, inputFieldHeight, cardBorderWidth, fontFamily };

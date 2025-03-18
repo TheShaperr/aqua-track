@@ -17,7 +17,7 @@ import { type UserDataState } from "@/types/store/UserDataState";
 import { UserMetrics } from "@/models/UserMetrics";
 
 // Duration of the loading animation in ms
-const duration = 15 * ONE_SECOND;
+const duration = 12 * ONE_SECOND;
 
 interface CalculateDailyIntakeProps {
   onCompleteStartup: () => void;

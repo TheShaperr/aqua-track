@@ -13,14 +13,15 @@ import { CustomFlatList } from "@/components/lists";
 import { drinkTypeList } from "@/utils/maps";
 import { animatedScaleValue } from "@/utils/animations";
 import { headerFontSize } from "@/utils/constants/components/typography";
-import { screenWidth } from "@/utils/constants";
+import { screenWidth, SCREEN_SIZE } from "@/utils/constants";
 
 import { DrinkItem } from "@/models/DrinkItem";
 
 import { DrinkRouteName } from "@/enums/routes/DrinkRouteName";
+import { ScreenSize } from "@/enums/maps/ScreenSize";
 
 const numColumns = 2; // Number of columns for the flatlist
-const numberOfRows = 5; // Number of rows for the flatlist
+const numberOfRows = SCREEN_SIZE === ScreenSize.LARGE ? 6 : 5; // Number of rows for the flatlist
 const spacing = ms(12); // Spacing for the flatlist items in pixels
 
 const itemWidth = (screenWidth - spacing * (numColumns + 1)) / numColumns;
@@ -101,8 +102,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   cardButton: {
-    width: "100%",
-    height: "100%",
+    width: "95%",
+    height: "95%",
+    left: "2.5%",
+    top: "2.5%",
   },
   flatListContent: {
     paddingHorizontal: spacing / 2,

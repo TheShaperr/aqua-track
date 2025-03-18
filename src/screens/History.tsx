@@ -11,10 +11,13 @@ import { CustomFlatList } from "@/components/lists";
 
 import { MainRouteName } from "@/enums/routes/MainRouteName";
 
-import { ONE_MIN } from "@/utils/constants";
+import { ONE_MIN, SCREEN_SIZE } from "@/utils/constants";
 import { headerFontSize } from "@/utils/constants/components/typography";
 
 import { useDisplayUnits, usePeriodicRerender, useTodaysDrinks } from "@/hooks";
+import { ScreenSize } from "@/enums/maps/ScreenSize";
+
+const numberOfRows = SCREEN_SIZE === ScreenSize.SMALL ? 4 : 5;
 
 function History() {
   const { t } = useTranslation();
@@ -46,7 +49,7 @@ function History() {
       </View>
       <CustomFlatList
         data={drinkHistory}
-        rowsOfListItemsOnScreen={4}
+        rowsOfListItemsOnScreen={numberOfRows}
         wrapperStyles={styles.listWrapper}
         renderItem={({ item }) => (
           <HistoryItem

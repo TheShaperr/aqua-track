@@ -1,6 +1,8 @@
-import { FONT_SIZE_20 } from "@/utils/constants";
-import { ms } from "react-native-size-matters";
+import { ScreenSize } from "@/enums/maps/ScreenSize";
 
-const registerFormErrorFontSize = ms(FONT_SIZE_20);
+import { FONT_SIZE_17, FONT_SIZE_19, SCREEN_SIZE } from "@/utils/constants";
+
+const registerFormErrorFontSize =
+  SCREEN_SIZE === ScreenSize.LARGE ? FONT_SIZE_19 : FONT_SIZE_17;
 
 export { registerFormErrorFontSize };

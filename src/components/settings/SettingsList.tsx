@@ -9,8 +9,10 @@ import { useTranslation } from "react-i18next";
 
 import { settingsList } from "@/utils/maps";
 import { headerFontSize } from "@/utils/constants/components/typography";
+import { SCREEN_SIZE } from "@/utils/constants";
+import { ScreenSize } from "@/enums/maps/ScreenSize";
 
-const rowOfItems = 7;
+const numberOfRows = SCREEN_SIZE === ScreenSize.SMALL ? 7 : 8;
 
 function SettingsList() {
   const { t } = useTranslation();
@@ -27,7 +29,7 @@ function SettingsList() {
       </View>
       <CustomFlatList
         data={settingsList}
-        rowsOfListItemsOnScreen={rowOfItems}
+        rowsOfListItemsOnScreen={numberOfRows}
         wrapperStyles={styles.settingsListWrapper}
         renderItem={({ item }) => (
           <SettingsItem

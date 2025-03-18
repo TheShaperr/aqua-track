@@ -41,32 +41,30 @@ function ActionModal({ modalText, hasDecision }: ActionModalProps) {
     dispatch(setModalActive(false));
   };
 
-  const handleOnConfirm = () => {
+  const handleOnConfirm = async () => {
     const configObject = { toValue: 0 };
 
     setBlurVisible(false);
-    springAnimation(scaleValue, configObject, () => {
-      closeModal();
+    await springAnimation(scaleValue, configObject);
 
-      onConfirm();
-      // Clear onConfirm to prevent it being saved and called again in case of multiple modals
-      if (
-        window.modalHandlers &&
-        window.modalHandlers.onConfirm &&
-        typeof window.modalHandlers.onConfirm === "function"
-      )
-        window.modalHandlers.onConfirm = () => {};
-    });
+    onConfirm();
+    closeModal();
+    // Clear onConfirm to prevent it being saved and called again in case of multiple modals
+    if (
+      window.modalHandlers &&
+      window.modalHandlers.onConfirm &&
+      typeof window.modalHandlers.onConfirm === "function"
+    )
+      window.modalHandlers.onConfirm = () => {};
   };
 
-  const handleOnCancel = () => {
+  const handleOnCancel = async () => {
     const configObject = { toValue: 0, speed: 60 };
 
     setBlurVisible(false);
-    springAnimation(scaleValue, configObject, () => {
-      closeModal();
-      onCancel();
-    });
+    await springAnimation(scaleValue, configObject);
+    onCancel();
+    closeModal();
   };
 
   useEffect(() => {

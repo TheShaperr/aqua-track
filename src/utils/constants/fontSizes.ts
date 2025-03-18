@@ -5,9 +5,12 @@ const FONT_SIZE_14 = 14;
 const FONT_SIZE_15 = 15;
 const FONT_SIZE_16 = 16;
 const FONT_SIZE_17 = 17;
+const FONT_SIZE_18 = 18;
+const FONT_SIZE_19 = 19;
 const FONT_SIZE_20 = 20;
 const FONT_SIZE_22 = 22;
 const FONT_SIZE_24 = 24;
+const FONT_SIZE_26 = 26;
 const FONT_SIZE_28 = 28;
 const FONT_SIZE_30 = 30;
 const FONT_SIZE_34 = 34;
@@ -25,9 +28,12 @@ export {
   FONT_SIZE_15,
   FONT_SIZE_16,
   FONT_SIZE_17,
+  FONT_SIZE_18,
+  FONT_SIZE_19,
   FONT_SIZE_20,
   FONT_SIZE_22,
   FONT_SIZE_24,
+  FONT_SIZE_26,
   FONT_SIZE_28,
   FONT_SIZE_30,
   FONT_SIZE_34,
